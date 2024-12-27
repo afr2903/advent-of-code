@@ -60,6 +60,16 @@ func main() {
 		numbers := strings.Fields(line)
 		if is_safe(numbers) {
 			safe_reports++
+		} else {
+			for i := 0; i < len(numbers); i++ {
+				new_numbers := make([]string, 0)
+				new_numbers = append(new_numbers, numbers[:i]...)
+				new_numbers = append(new_numbers, numbers[i+1:]...)
+				if is_safe(new_numbers) {
+					safe_reports++
+					break
+				}
+			}
 		}
 	}
 	fmt.Println("Number of safe reports: ", safe_reports)
